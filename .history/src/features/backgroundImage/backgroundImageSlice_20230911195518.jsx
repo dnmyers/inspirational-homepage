@@ -4,17 +4,29 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const fetchImages = createAsyncThunk('backgroundImage/getBackgroundImages', async() => {
-    try {
-        const response = await axios.get("https://api.unsplash.com/photos", {
+export const loadBackgroundImages = () => {
+    return async (dispatch, getState) => {
+        const payload = await axios.get("https://api.unsplash.com/photos/random", {
             params: {
                 query: 'nature',
                 count: 5,
                 client_id: ''
             }
-        })
+        });
     }
-});
+};
+
+// const fetchImages = createAsyncThunk('backgroundImage/getBackgroundImages', async() => {
+//     try {
+//         const response = await axios.get("https://api.unsplash.com/photos", {
+//             params: {
+//                 query: 'nature',
+//                 count: 5,
+//                 client_id: ''
+//             }
+//         })
+//     }
+// });
 
 const backgroundImageSlice = createSlice({
     name: 'backgroundImage',
